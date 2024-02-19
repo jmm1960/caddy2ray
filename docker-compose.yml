@@ -1,18 +1,20 @@
 version: "3"
 services:
   caddy2ray:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - V2R_VERSION=v5.12.1
+    container_name: caddy2ray
+    restart: unless-stopped
     environment:
       ALIAS: your-alias
       DOMAIN: your-domain
       EMAIL: your-email
-    container_name: caddy2ray
-    build:
-      context: ./
-      dockerfile: Dockerfile
     ports:
       - "443:443"
       - "80:80"
-    restart: unless-stopped
     volumes:
       - "./data/conf/v2ray:/etc/v2ray"
       - "./data/conf/caddy:/etc/caddy"
