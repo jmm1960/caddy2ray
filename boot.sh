@@ -14,6 +14,10 @@ if [ -z $DOMAIN ];then
     exit 2
 fi
 
+if [ -z $ALIAS ];then
+    ALIAS="$DOMAIN"
+fi
+
 if [ ! -e "/etc/caddy/Caddyfile" ];then
     WS_PATH="`echo $RANDOM | md5sum | cut -c 3-11`"
     WS_PORT=$(($RANDOM+1234))
@@ -52,6 +56,7 @@ if [ ! -e "/etc/caddy/Caddyfile" ];then
     cp -f /conf/v2ray/default_client.json /etc/v2ray/client.json
     sed -i "s/hostname-placeholder/${DOMAIN}/" /etc/v2ray/client.json
     sed -i "s/address-placeholder/${DOMAIN}/" /etc/v2ray/client.json
+    sed -i "s/ps-placeholder/${ALIAS}/" /etc/v2ray/client.json
     sed -i "s/uuid-placeholder/${UUID}/" /etc/v2ray/client.json
     sed -i "s/ws_path-placeholder/${WS_PATH}/" /etc/v2ray/client.json
 

@@ -20,13 +20,14 @@ https://docs.docker.com/engine/install/
 |  ----  | ----  | ---- | ----
 | DOMAIN | 是 | 无 | 申请证书的域名，可以是二级域名
 | EMAIL | 否 | 无 | 申请证书的邮箱，如果不填将不会申请证书，且caddy只监听80端口
-
+| ALIAS | 否 | DOMAIN | 对应 v2ray 中 ps 字段，默认与 DOMAIN 相同
 ```
 docker run -d \
   --publish=80:80 \
   --publish=443:443 \
   --env=DOMAIN=v2.mooim.com \
   --env=EMAIL=r.anerg@gmail.com \
+  --env=ALIAS=US1 \
   --restart=always \
   --name=caddy_v2ray \
   anerg/v2ray:latest
