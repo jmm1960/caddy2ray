@@ -1,0 +1,19 @@
+version: "3"
+services:
+  caddy2ray:
+    environment:
+      ALIAS: your-alias
+      DOMAIN: your-domain
+      EMAIL: your-email
+    container_name: caddy2ray
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "443:443"
+      - "80:80"
+    restart: unless-stopped
+    volumes:
+      - "./data/conf/v2ray:/etc/v2ray"
+      - "./data/conf/caddy:/etc/caddy"
+      - "./data/ssl:/data/caddy/certificates"

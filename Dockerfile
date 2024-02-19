@@ -32,7 +32,7 @@ RUN set -xe \
     && apk del .build-deps \
     && rm -rf /tmp/* \
     && rm /etc/caddy/Caddyfile \
-    && apk add uuidgen openrc
+    && apk add uuidgen openrc jq
 
 EXPOSE 80 443
 
